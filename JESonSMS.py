@@ -73,18 +73,18 @@ def nloTotalXsecMaker(individualXSecs = None):
 c1 = Print("JESSignalSMST1_250.pdf")
 c1.open()
 r.gPad.SetRightMargin(0.15)
-centalRootFile73 = r.TFile.Open("./results_had_T1_73.7_.root")
-centalRootFile86 = r.TFile.Open("./results_had_T1_86.7_.root")
-centalRootFile100 = r.TFile.Open("./results_had_T1_100_.root")
-jesPlusRootFile73 = r.TFile.Open("./results_had_T1_73.7_+ve.root")
-jesPlusRootFile86 = r.TFile.Open("./results_had_T1_86.7_+ve.root")
-jesPlusRootFile100 = r.TFile.Open("./results_had_T1_100_+ve.root")
-jesNegRootFile73 = r.TFile.Open("./results_had_T1_73.7_-ve.root")
-jesNegRootFile86 = r.TFile.Open("./results_had_T1_86.7_-ve.root")
-jesNegRootFile100 = r.TFile.Open("./results_had_T1_100_-ve.root")
-jesRanRootFile73 = r.TFile.Open("./results_had_T1_73.7_ran.root")
-jesRanRootFile86 = r.TFile.Open("./results_had_T1_86.7_ran.root")
-jesRanRootFile100 = r.TFile.Open("./results_had_T1_100_ran.root")
+centalRootFile73 = r.TFile.Open("./rootFiles/results_had_T1_73.7_.root")
+centalRootFile86 = r.TFile.Open("./rootFiles/results_had_T1_86.7_.root")
+centalRootFile100 = r.TFile.Open("./rootFiles/results_had_T1_100_.root")
+jesPlusRootFile73 = r.TFile.Open("./rootFiles/results_had_T1_73.7_+ve.root")
+jesPlusRootFile86 = r.TFile.Open("./rootFiles/results_had_T1_86.7_+ve.root")
+jesPlusRootFile100 = r.TFile.Open("./rootFiles/results_had_T1_100_+ve.root")
+jesNegRootFile73 = r.TFile.Open("./rootFiles/results_had_T1_73.7_-ve.root")
+jesNegRootFile86 = r.TFile.Open("./rootFiles/results_had_T1_86.7_-ve.root")
+jesNegRootFile100 = r.TFile.Open("./rootFiles/results_had_T1_100_-ve.root")
+# jesRanRootFile73 = r.TFile.Open("./results_had_T1_73.7_ran.root")
+# jesRanRootFile86 = r.TFile.Open("./results_had_T1_86.7_ran.root")
+# jesRanRootFile100 = r.TFile.Open("./results_had_T1_100_ran.root")
 
 
 
@@ -95,7 +95,7 @@ for bin in settings["HTBins"]:
     cuts = []
     cutsJESNeg = []
     cutsJESPlus = []
-    cutsJESRan = []
+    # cutsJESRan = []
     nocuts = []
 
     nocuts = GetHist(File = centalRootFile73,folder = ["smsScan_before",], hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2)
@@ -121,20 +121,20 @@ for bin in settings["HTBins"]:
     cutsJESNegHist = threeToTwo(cutsJESNegHist)                                       
         
         
-    cutsJESRanHist = GetHist(File =   jesRanRootFile73,folder = ["smsScan_AlphaT55_275_325"],hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2).Clone()
-    cutsJESRanHist.Add(GetHist(File = jesRanRootFile86,folder = ["smsScan_AlphaT55_325_375"],hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2))
-    cutsJESRanHist.Add(GetHist(File = jesRanRootFile100,folder = ["smsScan_AlphaT55_375_475","smsScan_AlphaT55_475_575","smsScan_AlphaT55_575_675",
-                                                         "smsScan_AlphaT55_675_775","smsScan_AlphaT55_775_875","smsScan_AlphaT55_875"],hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2))
+    # cutsJESRanHist = GetHist(File =   jesRanRootFile73,folder = ["smsScan_AlphaT55_275_325"],hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2).Clone()
+    #   cutsJESRanHist.Add(GetHist(File = jesRanRootFile86,folder = ["smsScan_AlphaT55_325_375"],hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2))
+    #   cutsJESRanHist.Add(GetHist(File = jesRanRootFile100,folder = ["smsScan_AlphaT55_375_475","smsScan_AlphaT55_475_575","smsScan_AlphaT55_575_675",
+    #                                                        "smsScan_AlphaT55_675_775","smsScan_AlphaT55_775_875","smsScan_AlphaT55_875"],hist = "m0_m12_mChi_noweight", Norm = None ,rebin= 2))
         
-    cutsJESRanHist = threeToTwo(cutsJESRanHist)
+    # cutsJESRanHist = threeToTwo(cutsJESRanHist)
     cutsHist.GetXaxis().SetRangeUser(0.,1200.)
     cutsJESPlusHist.GetXaxis().SetRangeUser(0.,1200.)
     cutsJESNegHist.GetXaxis().SetRangeUser(0.,1200.)
-    cutsJESRanHist.GetXaxis().SetRangeUser(0.,1200.)
+    # cutsJESRanHist.GetXaxis().SetRangeUser(0.,1200.)
     cutsHist.GetYaxis().SetRangeUser(0.,1200.)
     cutsJESPlusHist.GetYaxis().SetRangeUser(0.,1200.)
     cutsJESNegHist.GetYaxis().SetRangeUser(0.,1200.)
-    cutsJESRanHist.GetYaxis().SetRangeUser(0.,1200.)
+    # cutsJESRanHist.GetYaxis().SetRangeUser(0.,1200.)
     
         # cutsHist.Draw("COLZ")
         # c1.Print()
@@ -153,7 +153,7 @@ for bin in settings["HTBins"]:
           cutsHist.SetBinContent(bin,0.)
           cutsJESPlusHist.SetBinContent(bin,0.)
           cutsJESNegHist.SetBinContent(bin,0.)
-          cutsJESRanHist.SetBinContent(bin,0.)
+          # cutsJESRanHist.SetBinContent(bin,0.)
           
 
     x_width = cutsHist.GetXaxis().GetBinWidth(10)
@@ -178,8 +178,8 @@ for bin in settings["HTBins"]:
     TotalEffPlus.Divide(nocuts)
     TotalEffNeg = cutsJESNegHist.Clone()
     TotalEffNeg.Divide(nocuts)
-    TotalEffRan = cutsJESRanHist.Clone()
-    TotalEffRan.Divide(nocuts)
+    # TotalEffRan = cutsJESRanHist.Clone()
+    # TotalEffRan.Divide(nocuts)
 
 
     EffOverJESNeg = TotalEffNeg.Clone()
@@ -204,15 +204,15 @@ for bin in settings["HTBins"]:
     EffOverJESPlus.SetMaximum(maxi)
     c1.Print()
 
-    EffOverJESRan = TotalEffRan.Clone()
-    EffOverJESRan.Divide(TotalEff)
-    EffOverJESRan.SetTitle("JES variation for signal efficiency")
-    EffOverJESRan.Draw("COLZ")
-    for bin in range(EffOverJESRan.GetNbinsX()*EffOverJESRan.GetNbinsY()):
-        if EffOverJESRan.GetBinContent(bin) > maxi or EffOverJESRan.GetBinContent(bin) < mini: EffOverJESRan.SetBinContent(bin,0.)
-    EffOverJESRan.SetMinimum(mini)
-    EffOverJESRan.SetMaximum(maxi)
-    c1.Print()
+    # EffOverJESRan = TotalEffRan.Clone()
+    # EffOverJESRan.Divide(TotalEff)
+    # EffOverJESRan.SetTitle("JES variation for signal efficiency")
+    # EffOverJESRan.Draw("COLZ")
+    # for bin in range(EffOverJESRan.GetNbinsX()*EffOverJESRan.GetNbinsY()):
+        # if EffOverJESRan.GetBinContent(bin) > maxi or EffOverJESRan.GetBinContent(bin) < mini: EffOverJESRan.SetBinContent(bin,0.)
+    # EffOverJESRan.SetMinimum(mini)
+    # EffOverJESRan.SetMaximum(maxi)
+    # c1.Print()
 
 
     
@@ -223,7 +223,7 @@ for bin in settings["HTBins"]:
 
     oneDJesMinus = r.TH1D("oneDJesMinus","oneDJesMinus",1000,-5.,5.)
     oneDJesPlus = r.TH1D("oneDJesPlus","oneDJesPlus",1000,-5.,5.)
-    oneDJesRan = r.TH1D("oneDJesRan","JES variation for signal efficiency 1D Projection",1000,-5.,5.)
+    # oneDJesRan = r.TH1D("oneDJesRan","JES variation for signal efficiency 1D Projection",1000,-5.,5.)
     nEvents = r.TH1D("totEv","totEv",2500,0,2500)
     minf=0.9
     maxf=1.1
@@ -233,7 +233,7 @@ for bin in settings["HTBins"]:
     for bin in range(totalBins):
         contentMinus = EffOverJESNeg.GetBinContent(bin)
         contentPlus =  EffOverJESPlus.GetBinContent(bin)
-        contentRan =   EffOverJESRan.GetBinContent(bin)
+        # contentRan =   EffOverJESRan.GetBinContent(bin)
         content = nocuts.GetBinContent(bin)
         if content == 0: continue
         if EffOverJESPlus.GetBinContent(bin) < 0.01: continue
@@ -241,20 +241,20 @@ for bin in settings["HTBins"]:
            print "Efficiency is %f, noscaling events = %f, scaling events = %f, difference"%(EffOverJESPlus.GetBinContent(bin),cutsHist.GetBinContent(bin),cutsJESPlusHist.GetBinContent(bin) )
            nEvents.Fill(math.fabs(cutsJESPlusHist.GetBinContent(bin)-cutsHist.GetBinContent(bin)))
            
-        if contentMinus > 0.:oneDJesMinus.Fill(contentMinus)
-        if contentPlus > 0.: oneDJesPlus.Fill(contentPlus)
-        if contentRan > 0.: oneDJesRan.Fill(contentRan)
+        if contentMinus > 0.:oneDJesMinus.Fill(abs(contentMinus))
+        if contentPlus > 0.: oneDJesPlus.Fill(abs(contentPlus))
+        # if contentRan > 0.: oneDJesRan.Fill(contentRan)
     # nEvents.Draw()
     # c1.Print()
     # c1.canvas.SetLogy()
     r.gStyle.SetOptStat(1111)
-    oneDJesMinus.GetXaxis().SetRangeUser(0.8,1.2)
+    # oneDJesMinus.GetXaxis().SetRangeUser(0.8,1.2)
     oneDJesMinus.Draw("hist")
     oneDJesMinus.Fit("Gaussian","RQ")
     fit.Draw("lsame")
 
     c1.Print()
-    oneDJesPlus.GetXaxis().SetRangeUser(0.8,1.2)
+    # oneDJesPlus.GetXaxis().SetRangeUser(0.8,1.2)
     oneDJesPlus.Draw("hist")
     oneDJesPlus.Fit("Gaussian","RQ")
     fit.Draw("lsame")
@@ -264,10 +264,10 @@ for bin in settings["HTBins"]:
     # maxf=1.03
     # fit =r.TF1("Gaussian","gaus",minf,maxf)
 
-    oneDJesRan.GetXaxis().SetRangeUser(0.8,1.2)
-    oneDJesRan.Draw("hist")
-    oneDJesRan.Fit("Gaussian","RQ")
-    fit.Draw("lsame")
+    # oneDJesRan.GetXaxis().SetRangeUser(0.8,1.2)
+    # oneDJesRan.Draw("hist")
+    # oneDJesRan.Fit("Gaussian","RQ")
+    # fit.Draw("lsame")
     # print "RMS is =", oneDJesRan.GetRMS()
     c1.Print()
 
@@ -277,7 +277,7 @@ for bin in settings["HTBins"]:
     JesTotal.Draw("hist")
     JesTotal.Fit("Gaussian","RQ")
     fit.Draw("lsame")
-    print "RMS is =", oneDJesRan.GetRMS()
+    # print "RMS is =", oneDJesRan.GetRMS()
     c1.Print()
     
 

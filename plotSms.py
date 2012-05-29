@@ -19,11 +19,12 @@ def threeToTwo(h3) :
     h2.GetZaxis().SetTitle(h3.GetZaxis().GetTitle())
     return h2
 
-c1 = Print("T1bbbbAllBins.pdf")
+c1 = Print("T1tttt.pdf")
 c1.open()
 
+r.gPad.SetRightMargin(0.15)
 
-for f in ["results_had_T1bbbb_100.root","results_had_T1bbbb_73.7.root","results_had_T1bbbb_86.7.root"]:
+for f in ["results_NEWSCAN_had_T1tttt_73.7.root"]:
     histo = GetSumHist(File = [f], Directories = ["smsScan_before"], Hist = "m0_m12_mChi_noweight", Col = r.kBlack, Norm = None, LegendText = "No btag requirement")
     a = threeToTwo(histo.hObj)
     a.SetTitle(f)
