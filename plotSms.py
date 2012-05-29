@@ -19,15 +19,20 @@ def threeToTwo(h3) :
     h2.GetZaxis().SetTitle(h3.GetZaxis().GetTitle())
     return h2
 
-c1 = Print("T1tttt.pdf")
+c1 = Print("T2bb.pdf")
 c1.open()
 
 r.gPad.SetRightMargin(0.15)
 
-for f in ["results_NEWSCAN_had_T1tttt_73.7.root"]:
-    histo = GetSumHist(File = [f], Directories = ["smsScan_before"], Hist = "m0_m12_mChi_noweight", Col = r.kBlack, Norm = None, LegendText = "No btag requirement")
+
+dirs =[ "smsScan_before","smsScan_AlphaT55_275_325","smsScan_AlphaT55_325_375","smsScan_AlphaT55_375_475","smsScan_AlphaT55_475_575","smsScan_AlphaT55_575_675","smsScan_AlphaT55_675_775","smsScan_AlphaT55_775_875","smsScan_AlphaT55_875","smsScan_btag_>_0_AlphaT55_275_325","smsScan_btag_>_0_AlphaT55_325_375","smsScan_btag_>_0_AlphaT55_375_475","smsScan_btag_>_0_AlphaT55_475_575","smsScan_btag_>_0_AlphaT55_575_675","smsScan_btag_>_0_AlphaT55_675_775","smsScan_btag_>_0_AlphaT55_775_875","smsScan_btag_>_0_AlphaT55_875","smsScan_btag_==_0_AlphaT55_275_325","smsScan_btag_==_0_AlphaT55_325_375","smsScan_btag_==_0_AlphaT55_375_475","smsScan_btag_==_0_AlphaT55_475_575","smsScan_btag_==_0_AlphaT55_575_675","smsScan_btag_==_0_AlphaT55_675_775","smsScan_btag_==_0_AlphaT55_775_875","smsScan_btag_==_0_AlphaT55_875","smsScan_btag_==_1_AlphaT55_275_325","smsScan_btag_==_1_AlphaT55_325_375","smsScan_btag_==_1_AlphaT55_375_475","smsScan_btag_==_1_AlphaT55_475_575","smsScan_btag_==_1_AlphaT55_575_675","smsScan_btag_==_1_AlphaT55_675_775","smsScan_btag_==_1_AlphaT55_775_875","smsScan_btag_==_1_AlphaT55_875","smsScan_btag_==_2_AlphaT55_275_325","smsScan_btag_==_2_AlphaT55_325_375","smsScan_btag_==_2_AlphaT55_375_475","smsScan_btag_==_2_AlphaT55_475_575","smsScan_btag_==_2_AlphaT55_575_675","smsScan_btag_==_2_AlphaT55_675_775","smsScan_btag_==_2_AlphaT55_775_875","smsScan_btag_==_2_AlphaT55_875","smsScan_btag_>_2_AlphaT55_275_325","smsScan_btag_>_2_AlphaT55_325_375","smsScan_btag_>_2_AlphaT55_375_475","smsScan_btag_>_2_AlphaT55_475_575","smsScan_btag_>_2_AlphaT55_575_675","smsScan_btag_>_2_AlphaT55_675_775","smsScan_btag_>_2_AlphaT55_775_875","smsScan_btag_>_2_AlphaT55_875","smsScan_AlphaT52_53_275_325","smsScan_AlphaT52_53_325_375","smsScan_AlphaT52_53_375_475","smsScan_AlphaT52_53_475_575","smsScan_AlphaT52_53_575_675","smsScan_AlphaT52_53_675_775","smsScan_AlphaT52_53_775_875","smsScan_AlphaT52_53_875","smsScan_AlphaT53_55_275_325","smsScan_AlphaT53_55_325_375","smsScan_AlphaT53_55_375_475","smsScan_AlphaT53_55_475_575","smsScan_AlphaT53_55_575_675","smsScan_AlphaT53_55_675_775","smsScan_AlphaT53_55_775_875","smsScan_AlphaT53_55_875",]
+
+
+for f in ["results_FIX_NEWSCAN_had_T2bb_100.root"]:
+  for d in dirs:
+    histo = GetSumHist(File = [f], Directories = [d], Hist = "m0_m12_mChi_noweight", Col = r.kBlack, Norm = None, LegendText = "No btag requirement")
     a = threeToTwo(histo.hObj)
-    a.SetTitle(f)
+    a.SetTitle(d)
     a.Draw("COLZ")
     c1.Print()
 
